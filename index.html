@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine's Day Surprise</title>
+    <style>
+        body {
+            background-color: #fcd2e7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        img {
+            max-width: 300px; 
+            margin-bottom: 200px;
+        }
+        .question {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: absolute;
+        }
+        .yes {
+            background-color: #4CAF50; 
+            top: 52%; left: 45%;
+        }
+        .no {
+            background-color: #F44336;
+            top: 52%; left: 51%;
+        }
+    </style>
+</head>
+<body>
+    <img src="Ques.gif" alt="Question GIF">
+    <div class="question"><h1>Will you be my Valentine?</h1></div>
+    <button class="yes" onclick="handleYes()">Yes</button>
+    <button class="no" onclick="handleNo()">No</button>
+    <script>
+        let noClicks = 0;
+        const noBtn = document.querySelector('.no');
+        const yesBtn = document.querySelector('.yes');
+
+        function handleNo() {
+            noClicks++;
+            const noMessages = ["SURE KA?", "SIGURADO KA?", "PAKAISIPAN MO!", "LAST CHANCE!", "AWTSSS", "TAMPO NAKO", "DALI NA", "ISA PA", "IHHH SIGE NA", 
+            "AYAW MO SAKIN?:<", ":<<<<<", "SAD NAKO", "IIYAK NAKO", "SIGE NA PLEASEE", "PLEASEEEE :<", "PLEASEEEE :<"];
+            let newSize = 2.7 + noClicks * 2.5; 
+
+            if (noClicks < noMessages.length) {
+                noBtn.textContent = noMessages[noClicks - 1];
+            } else {
+              noBtn.style.display = 'none';  
+            }
+
+            yesBtn.style.transform = `scale(${newSize})`;
+
+            moveButtonRandomly(noBtn);
+        }
+
+        function handleYes() {
+            document.body.innerHTML = '<div style="font-size: 2em; color: #FF1493; text-align: center;">YAY &lt;3<br><img src="yay.gif" alt="Celebration Image" style="max-width: 300px;"></div>';
+        }
+s
+        function moveButtonRandomly(button) {
+            const height = window.innerHeight - 50; 
+            const width = window.innerWidth - 100; 
+            const newY = Math.random() * height;
+            const newX = Math.random() * width;
+            button.style.top = `${newY}px`;
+            button.style.left = `${newX}px`;
+        }
+    </script>
+</body>
+</html>
